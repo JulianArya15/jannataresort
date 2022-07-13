@@ -4,6 +4,7 @@
   <div class="jr__Page__container">
     <HeroBanner />
     <TheResort />
+    <TheStay />
   </div>
 </template>
 

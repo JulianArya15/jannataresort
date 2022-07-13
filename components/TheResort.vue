@@ -54,7 +54,7 @@ export default {
                     snap: {
                         snapTo: "labels",
                         duration: {min: 0.8, max: 3},
-                        delay: 0.2,
+                        delay: 0.3,
                         inertia: false
                     }
                 }
