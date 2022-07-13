@@ -9,33 +9,26 @@
             </div>
             <client-only>
                 <agile ref="carousel" :options="myOptions" @after-change="e => currSlide = e.currentSlide">
-                    <div class="slide">
-                        <div :id="setNewCurrent(0)" class="image-wrapper">
-                            <img class="jr__Hero__image" src="https://vold-chain-hotel.s3-ap-southeast-1.amazonaws.com/5e65fe109dae8c14dd70f7e0/pictures/homepage/15849420444562/raw/e5740d7a-73ce-4643-8761-2f59c29a40f9.jpg">
+                    <div class="slide" v-for="(slide, index) in json.model.dataSlider" :key="index">
+                        <div class="image-container">
+                            <div :id="setNewCurrent(index)" class="image-wrapper">
+                                <img class="jr__Hero__image" :src="slide.featured.aws_file_url+'/'+slide.featured.path+'/'+slide.featured.filename.raw">
+                            </div>
                         </div>
                         <div id="text" class="jr__Hero__innerText">
-                            <h1>Accomodation</h1>
-                            <p>Every accommodation has a sense of discrete luxury, combining contemporary and Balinese décor.</p>
-                            <button>Read More</button>
+                            <h1 v-html="slide.title"></h1>
+                            <p>{{slide.description}}</p>
+                            <div class="bounding-box">
+                                <a>Read More</a>
+                            </div>
                         </div>
                         <div class="grad-bottom"></div>
                     </div>
-                    <div class="slide">
-                        <div :id="setNewCurrent(1)" class="image-wrapper">
-                            <img class="jr__Hero__image" src="https://vold-chain-hotel.s3-ap-southeast-1.amazonaws.com/5e65fe109dae8c14dd70f7e0/pictures/homepage/15845882025441/raw/ff642f58-71fc-4cee-9d91-d525b1c641d2.jpg">
-                        </div>
-                        <div class="grad-bottom"></div>
-                    </div>
-                    <div class="slide">
-                        <div :id="setNewCurrent(2)" class="image-wrapper">
-                            <img class="jr__Hero__image" src="https://vold-chain-hotel.s3-ap-southeast-1.amazonaws.com/5e65fe109dae8c14dd70f7e0/pictures/homepage/15843368292441/raw/0a92d769-ae4f-4a86-b5d6-67fbb4bc4472.jpg">
-                        </div>
-                        <div class="grad-bottom"></div>
-                    </div>
+                    
                 </agile>
                 <div class="jr__Hero__navButtons">    
-                    <button @click="handlePrevSlide"><font-awesome-icon :icon="['fa', 'chevron-left']"  /></button>
-                    <button @click="handleNextSlide"><font-awesome-icon :icon="['fa', 'chevron-right']"  /></button>
+                    <button @click="$refs.carousel.goToPrev()"><font-awesome-icon :icon="['fa', 'chevron-left']"  /></button>
+                    <button @click="$refs.carousel.goToNext()"><font-awesome-icon :icon="['fa', 'chevron-right']"  /></button>
                 </div>
             </client-only>
         </div>
@@ -44,12 +37,13 @@
 
 <script>
 import { gsap } from "gsap";
-// import json from "../json/homepage.json";
+import { jsonStore } from "../json/jsonStore";
 
 export default {
     components: {},
     data() {
         return {
+            json: jsonStore.jsonData.components[0],
             currSlide: 0,
             myOptions: {
                 navButtons: false,
@@ -67,7 +61,7 @@ export default {
     },
     watch: {
         currSlide(newVal, oldVal) {
-            gsap.fromTo("#text", {opacity: 0, y: 0}, {duration: 0.5, opacity: 1, y: -40, ease: 'ease-out'} )
+            gsap.fromTo("#text", {opacity: 0, y: 0}, {duration: 1, opacity: 1, y: -40, ease: 'ease-out'} )
         },
         watchCoordXCoordY(newVal, oldVal) {
             // split coordinate to get X & Y coord
@@ -95,20 +89,8 @@ export default {
         window.addEventListener("mousemove", e => {    
             this.handleMove(e);
         });
-            
-        // translate using mouse position's coordinate
-        // gsap.to("#current", { x:this.coordX, y:this.coordY, scaleX: 1.1, scaleY: 1.1, opacity: 1, ease: "power3.out" });
-
     },
     methods: {
-        handleNextSlide() {
-            this.$refs.carousel.goToNext();
-            // this.currSlide = this.$refs.carousel.getCurrentSlide();
-        },
-        handlePrevSlide() {
-            this.$refs.carousel.goToPrev();
-            // this.currSlide = this.$refs.carousel.getCurrentSlide();
-        },
         setNewCurrent(id) {
             return this.currSlide === id ? 'current' : null;
         },
@@ -136,14 +118,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
-
 section {
     position: relative;
     width: 100%;
     height: 100vh;
     z-index: 1;
 }
+
+.slide, .agile, .image-wrapper, .image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: 50%;
+    z-index: 1;
+    background-size: cover;
+}
+
 
 .jr__Hero__logoImage {
     position: absolute;
@@ -168,14 +160,6 @@ section {
     width: 100%;
 }
 
-.image-wrapper {
-    width: 100%;
-    height: 100%;
-    background-position: 50%;
-    z-index: 1;
-    background-size: cover;
-}
-
 .slide {
     overflow: hidden;
     position: relative;
@@ -197,16 +181,46 @@ section {
     max-width: 480px;
     text-align: center;
     left: 50%;
-    bottom: 40%;
+    bottom: 15%;
     transform: translateX(-50%);
+    color: white;
+    z-index: 1;
 
     h1 {
         font: 400 43px/1.3 'Playfair Display',serif;
         text-transform: uppercase;
-        color: white;
         margin-top: 0;
         margin-bottom: 0;
         letter-spacing: 5px;
+    }
+
+    p {
+        font: 400 14px/1.8 'Open Sans',sans-serif;
+        max-width: 400px;
+        letter-spacing: 1px;
+        margin: 30px auto 0;
+    }
+
+    .bounding-box {
+        padding: 50px 20px 20px;
+        display: inline-block;
+
+        a {
+            display: inline-block;
+            border: 1px solid #fff;
+            padding: 10px 30px;
+            color: #fff;
+            font: 400 11px/1.3 "Open Sans",sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all .2s ease;
+
+            &:hover {
+                cursor: pointer;
+                background: #fff;
+                color: #000;
+            }
+        }
     }
 }
 
@@ -214,6 +228,7 @@ section {
     position: absolute;
     bottom: 10%;
     right: 10%;
+    z-index: 1;
 
     button {
         font-weight: 200;
