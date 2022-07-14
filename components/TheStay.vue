@@ -24,9 +24,6 @@
 </template>
 
 <script>
-// import { gsap } from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger.js";
-
 import { jsonStore } from "../json/jsonStore";
 
 export default {
@@ -179,10 +176,4 @@ section {
     }
 }
 
-</style>
-
-<style lang="scss">
-p {
-    margin: 0;
-}
 </style>

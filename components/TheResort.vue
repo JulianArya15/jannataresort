@@ -3,11 +3,14 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-7">
-                    <figure>
+                    <figure :style="{ 'height':'650px' }">
                         <div class="box"></div>
-                        <div class="img-container">
+                        <div class="img-container" :style="{ 'clip-path':'inset(0px)' }">
                             <div class="mask">
-                                <img class="clip_image" :src="json.model.featured.aws_file_url+'/'+json.model.featured.path+'/'+json.model.featured.filename.big" >
+                                <img 
+                                    :src="json.model.featured.aws_file_url+'/'+json.model.featured.path+'/'+json.model.featured.filename.big"
+                                    :style="{ 'height': '715px', 'width': 'auto' }"    
+                                >
                             </div>
                         </div>
                     </figure>
@@ -44,29 +47,31 @@ export default {
     },
     methods: {
         imageReveal() {
-            const mask = document.querySelector(".mask");
-            const image = mask.querySelector("img");
+            const masks = document.querySelectorAll(".mask");
+            
+            masks.forEach( mask => {
+                const image = mask.querySelector("img");
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: mask,
-                    toggleActions: "restart none none reset",
-                    end: "+=500px",
-                    scrub: false,
-                    snap: {
-                        snapTo: "labels",
-                        duration: {min: 0.8, max: 3},
-                        delay: 0.3,
-                        inertia: false
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: mask,
+                        toggleActions: "restart none none reset",
+                        end: "+=500px",
+                        scrub: false,
+                        snap: {
+                            snapTo: "labels",
+                            duration: {min: 0.8, max: 3},
+                            delay: 0.3,
+                            inertia: false
+                        }
                     }
-                }
+                });
+
+                tl.set(mask, { autoAlpha: 1 })
+                    .from(mask, { duration: 1.4, xPercent: -100, ease: "power1.inOut" })
+                    .from(image, { duration: 1.4, xPercent: 100, scale: 1.3, delay: -1.4, ease: "power1.inOut" })
+                    .addLabel("end");
             });
-
-            tl.set(mask, { autoAlpha: 1 })
-                .from(mask, { duration: 1.4, xPercent: -100, ease: "power1.inOut" })
-                .from(image, { duration: 1.4, xPercent: 100, scale: 1.3, delay: -1.4, ease: "power1.inOut" })
-                .addLabel("end");
-
         },
         parallaxAnimation() {
             gsap.fromTo(".box", 
@@ -191,7 +196,6 @@ section {
 }
 
 figure {
-    height: 650px;
     position: relative;
     margin: 0;
     padding: 0 30px 0 20px;
@@ -199,9 +203,6 @@ figure {
 
     .img-container {
         position: relative;
-        clip-path: inset(0px);
-        opacity: 1;
-        transform: matrix(1, 0, 0, 1, 0, 0);
         height: 100%;
         z-index: 5;
         min-height: 250px;
@@ -220,8 +221,6 @@ figure {
             height: 100%;
             min-width: 100%;
             min-height: 250px;
-            vertical-align: middle;
-            border-style: none;
             transform-origin: left;
             object-fit: cover;
         }
