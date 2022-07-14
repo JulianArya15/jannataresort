@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="columns">
-                <div class="accomodations column is-4" v-for="(accomodation, index) in json.model.dataSlider" :key="index">
+                <div v-for="(accomodation, index) in json.model.dataSlider" :key="index" class="accomodations column is-4">
                     <a :href="accomodation.link.url">
                         <h4 v-html="accomodation.link.title"></h4>
                         <div class="accomodation-bg" :style="{backgroundImage: 'url('+accomodation.featured.aws_file_url+'/'+accomodation.featured.path+'/'+accomodation.featured.filename.big+')'}"></div>

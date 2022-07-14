@@ -7,13 +7,12 @@
     <TheStay />
     <DinnerWithJannata />
     <RelaxingWithJannata /> 
+    <TestimonialSlider />
   </div>
 </template>
 
 <script>
-import DinnerWithJannata from '../components/DinnerWithJannata.vue'
 export default {
-  components: { DinnerWithJannata },
   name: 'IndexPage',
 }
 </script>

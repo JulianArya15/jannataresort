@@ -1,15 +1,14 @@
-
 <template>
     <section class="jr__Hero__container">
         <div class="jr__Hero__sliderBlock">
             <div class="jr__Hero__logoImage">
-                <a href="http://">
+                <a href="#">
                     <img src="https://jannataresort.com/_nuxt/img/1336c61.png">
                 </a>
             </div>
             <client-only>
                 <agile ref="carousel" :options="myOptions" @after-change="e => currSlide = e.currentSlide">
-                    <div class="slide" v-for="(slide, index) in json.model.dataSlider" :key="index">
+                    <div v-for="(slide, index) in json.model.dataSlider" :key="index" class="slide">
                         <div class="image-container">
                             <div :id="setNewCurrent(index)" class="image-wrapper">
                                 <img class="jr__Hero__image" :src="slide.featured.aws_file_url+'/'+slide.featured.path+'/'+slide.featured.filename.raw">
@@ -24,7 +23,6 @@
                         </div>
                         <div class="grad-bottom"></div>
                     </div>
-                    
                 </agile>
                 <div class="jr__Hero__navButtons">    
                     <button @click="$refs.carousel.goToPrev()"><font-awesome-icon :icon="['fa', 'chevron-left']"  /></button>
@@ -254,10 +252,10 @@ section {
 </style>
 
 <style lang="scss">
-    .agile,
-    .agile .agile__list,
-    .agile .agile__list .agile__track {
-        height: 100%;
-        width: 100%;
-    }
+.agile,
+.agile .agile__list,
+.agile .agile__list .agile__track {
+    height: 100%;
+    width: 100%;
+}
 </style>

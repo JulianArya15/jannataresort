@@ -9,6 +9,7 @@
                                 <img 
                                     :src="json.model.featured.aws_file_url+'/'+json.model.featured.path+'/'+json.model.featured.filename.big"
                                     :style="{ 'height': '641.3px', 'width': 'auto' }"
+                                    data-scroll="58"
                                 >
                             </div>
                         </div>

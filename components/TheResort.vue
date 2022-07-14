@@ -9,7 +9,8 @@
                             <div class="mask">
                                 <img 
                                     :src="json.model.featured.aws_file_url+'/'+json.model.featured.path+'/'+json.model.featured.filename.big"
-                                    :style="{ 'height': '715px', 'width': 'auto' }"    
+                                    :style="{ 'height': '715px', 'width': 'auto' }"   
+                                    data-scroll="65" 
                                 >
                             </div>
                         </div>
@@ -47,6 +48,11 @@ export default {
             json: jsonStore.jsonData.components[1],
         }
     },
+    mounted() {
+        this.imageReveal();
+        this.parallaxAnimation();
+        this.TextAnimation();
+    },
     methods: {
         imageReveal() {
             const masks = document.querySelectorAll(".mask");
@@ -76,6 +82,24 @@ export default {
             });
         },
         parallaxAnimation() {
+            const masks = document.querySelectorAll(".mask");
+
+            masks.forEach( mask => {
+                const image = mask.querySelector('img');
+
+                gsap.to(image, 
+                {
+                    scrollTrigger: {
+                        trigger: image,
+                        toggleActions: "restart none reverse reset",
+                        scrub: 1.5
+                    },
+                    duration: 1,
+                    y: -Math.abs(parseInt(image.getAttribute('data-scroll'))),
+                })
+            })
+
+            // animate .box hover top to bottom
             gsap.fromTo(".box", 
             {
                 yPercent: -15,
@@ -116,11 +140,6 @@ export default {
                 });
             });
         }
-    },
-    mounted() {
-        this.imageReveal();
-        this.parallaxAnimation();
-        this.TextAnimation();
     }
 }
 </script>
