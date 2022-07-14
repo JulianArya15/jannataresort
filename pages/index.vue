@@ -6,6 +6,7 @@
     <TheResort />
     <TheStay />
     <DinnerWithJannata />
+    <RelaxingWithJannata /> 
   </div>
 </template>
 
@@ -39,6 +40,7 @@ a.inline-link {
   text-transform: uppercase;
   letter-spacing: 1px;
   text-decoration: none;
+  color: #fff;
 
   &::before {
     content: "";
@@ -58,5 +60,19 @@ a.inline-link {
       width: calc(100% - 40px);
     }
   }
+}
+
+.title-line {
+  height: 1px;
+  background-color: #679334;
+  margin: 35px 0 40px;
+  position: relative;
+  right: -125px;
+  transform-origin: right;
+  -webkit-transform-origin: right;
+}
+
+.text-green {
+  color: #679334 !important;
 }
 </style>

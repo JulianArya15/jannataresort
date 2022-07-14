@@ -71,17 +71,17 @@ export default {
 
             
             if(Math.sign(newCoordX) === 1 && Math.sign(newCoordY) === 1) {
-                tl.to("#current", { duration:4, x:'25px', y:'15px', scaleX: 1.1, scaleY: 1.1, opacity: 1, ease: "power2.out" });
-                tl.set("#current", { rotation: 0, skewX: 0, scaleX: 1.1, scaleY: 1.1, x: 25, y: 15});
-            } else if (Math.sign(newCoordX) === -1 && Math.sign(newCoordY) === 1) {
-                tl.to("#current", { duration:4, x:'-25px', y:'15px', scaleX: 1.1, scaleY: 1.1, opacity: 1, ease: "power2.out" });
-                tl.set("#current", { rotation: 0, skewX: 0, scaleX: 1.1, scaleY: 1.1, x: -25, y: 15});
-            } else if (Math.sign(newCoordX) === -1 && Math.sign(newCoordY) === -1) {
                 tl.to("#current", { duration:4, x:'-25px', y:'-15px', scaleX: 1.1, scaleY: 1.1, opacity: 1, ease: "power2.out" });
                 tl.set("#current", { rotation: 0, skewX: 0, scaleX: 1.1, scaleY: 1.1, x: -25, y: -15});
-            } else if (Math.sign(newCoordX) === 1 && Math.sign(newCoordY) === -1) {
+            } else if (Math.sign(newCoordX) === -1 && Math.sign(newCoordY) === 1) {
                 tl.to("#current", { duration:4, x:'25px', y:'-15px', scaleX: 1.1, scaleY: 1.1, opacity: 1, ease: "power2.out" });
                 tl.set("#current", { rotation: 0, skewX: 0, scaleX: 1.1, scaleY: 1.1, x: 25, y: -15});
+            } else if (Math.sign(newCoordX) === -1 && Math.sign(newCoordY) === -1) {
+                tl.to("#current", { duration:4, x:'25px', y:'15px', scaleX: 1.1, scaleY: 1.1, opacity: 1, ease: "power2.out" });
+                tl.set("#current", { rotation: 0, skewX: 0, scaleX: 1.1, scaleY: 1.1, x: 25, y: 15});
+            } else if (Math.sign(newCoordX) === 1 && Math.sign(newCoordY) === -1) {
+                tl.to("#current", { duration:4, x:'-25px', y:'15px', scaleX: 1.1, scaleY: 1.1, opacity: 1, ease: "power2.out" });
+                tl.set("#current", { rotation: 0, skewX: 0, scaleX: 1.1, scaleY: 1.1, x: -25, y: 15});
             }
         },
     },
@@ -184,7 +184,7 @@ section {
     bottom: 15%;
     transform: translateX(-50%);
     color: white;
-    z-index: 1;
+    z-index: 2;
 
     h1 {
         font: 400 43px/1.3 'Playfair Display',serif;

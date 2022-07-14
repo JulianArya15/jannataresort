@@ -20,6 +20,7 @@
                             <span class="section-headline rev-item" v-html="json.model.title_one"></span>
                             <span class="section-headline rev-item text-green" v-html="json.model.title_two"></span>
                         </h2>
+                        <div class="title-line"></div>
                         <div v-html="json.model.description"></div>
                         <div class="rev-item">
                             <a href="#" class="inline-link text-green">{{json.model.link.title}}</a>
@@ -86,10 +87,6 @@ section {
 
 .block-picture {
     width: 95%;
-}
-
-.text-green {
-    color: #679334;
 }
 
 .title {

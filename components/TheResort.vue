@@ -19,7 +19,9 @@
                     <div class="inner">
                         <h1 class="section-headline rev-item" v-html="json.model.title"></h1>
                         <div class="rev-item" v-html="json.model.description"></div>
-                        <div class="rev-item"></div>
+                        <div class="rev-item">
+                            <a href="#" class="text-green inline-link">{{json.model.link.title}}</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,8 +111,8 @@ export default {
                     duration: 1.2, 
                     yPercent: 200, 
                     opacity: 0,  
-                    ease:"power1.inOut",
-                    stagger: 0.1 
+                    ease:"power2.inOut",
+                    stagger: 0.3 
                 });
             });
         }
