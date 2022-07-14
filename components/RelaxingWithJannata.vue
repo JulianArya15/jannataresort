@@ -35,18 +35,6 @@ section {
     padding: 0;
     min-height: 120vh;
     background-color: #000;
-    position: relative;
-    overflow: hidden;
-    
-}
-.container {
-    width: 100%;
-    max-width: 1280px;
-    padding: 0 5rem;
-    margin: 0 auto;
-    padding-left: 12rem;
-    padding-right: 12rem;
-    box-sizing: border-box;
 }
 
 .bg-image {
@@ -87,7 +75,6 @@ section {
     }
 }
     
-
 .section-headline {
     font: 400 35px/1.3 "Playfair Display",serif;
     text-transform: uppercase;

@@ -1,5 +1,5 @@
 <template>
-    <section class="jr__dinnerWithJannata__container">
+    <section class="jr__dinnerWithJannata__container bg-vanilla">
         <div class="container">
             <div class="columns">
                 <div class="column block-picture">
@@ -46,47 +46,20 @@ export default {
 
 <style lang="scss" scoped>
 section {
-    background-color: #f0f0f5;
     padding: 150px 0 100px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    position: relative;
 }
 
 .bg-white {
     background-color: #fff;
 }
 
-.container {
-    width: 100%;
-    max-width: 1280px;
-    padding: 0 5rem;
-    margin: 0 auto;
-    box-sizing: border-box;
-    padding-left: 12rem;
-    padding-right: 12rem;
-
-    &::before {
-        content: '';
-        position: absolute;
-        background-image: url("https://jannataresort.com/_nuxt/img/a109df5.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        display: inline-block;
-        top: -10vh;
-        left: -25px;
-        height: 100%;
-        width: 250px;
-    }
-}
-
 .columns {
     position: relative;
     padding-bottom: 130px;
-}
 
-.block-picture {
-    width: 95%;
+    .column.block-picture {
+        width: 95%;
+    }
 }
 
 .title {
@@ -152,14 +125,5 @@ figure {
     .columns:not(.q-desktop) {
         display: flex;
     }
-}
-</style>
-
-<style lang="scss">
-
-.block-entry .inner p {
-    max-width: 300px;
-    margin: 0;
-    font-size: 12px;
 }
 </style>

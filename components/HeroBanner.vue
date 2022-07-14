@@ -119,13 +119,13 @@ export default {
 
 <style lang="scss" scoped>
 section {
-    position: relative;
     width: 100%;
     height: 100vh;
     z-index: 1;
 }
 
-.slide, .agile, .image-wrapper, .image-container {
+.slide, .agile, 
+    .image-wrapper, .image-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -135,7 +135,6 @@ section {
     z-index: 1;
     background-size: cover;
 }
-
 
 .jr__Hero__logoImage {
     position: absolute;
@@ -224,6 +223,17 @@ section {
     }
 }
 
+.slide .grad-bottom {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    bottom: 0;
+    height: 40%;
+    pointer-events: none;
+    background: linear-gradient(180deg,transparent 0,rgba(0,0,0,.65));
+    opacity: .7;
+}
+
 .jr__Hero__navButtons {
     position: absolute;
     bottom: 10%;
@@ -249,16 +259,5 @@ section {
     .agile .agile__list .agile__track {
         height: 100%;
         width: 100%;
-    }
-
-    .slide .grad-bottom {
-        position: absolute;
-        z-index: 1;
-        width: 100%;
-        bottom: 0;
-        height: 40%;
-        pointer-events: none;
-        background: linear-gradient(180deg,transparent 0,rgba(0,0,0,.65));
-        opacity: .7;
     }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <section class="jr__theResort__container">
+    <section class="jr__theResort__container bg-vanilla">
         <div class="container">
             <div class="columns">
                 <div class="column is-7">
@@ -127,33 +127,7 @@ export default {
 
 <style lang="scss" scoped>
 section {
-    background-color: #f0f0f5;
     padding: 150px 0 100px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    position: relative;
-}
-.container {
-    width: 100%;
-    max-width: 1280px;
-    padding: 0 5rem;
-    margin: 0 auto;
-    box-sizing: border-box;
-    padding-left: 12rem;
-    padding-right: 12rem;
-
-    &::before {
-        content: '';
-        position: absolute;
-        background-image: url("https://jannataresort.com/_nuxt/img/a109df5.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        display: inline-block;
-        top: -10vh;
-        left: -25px;
-        height: 100%;
-        width: 250px;
-    }
 }
 
 .columns {
@@ -189,11 +163,6 @@ section {
         display: block;
         margin-bottom: 50px;
         margin-top: 100px;
-    }
-
-    .rev-item {
-        opacity: 1;
-        transform: matrix(1, 0, 0, 1, 0, 0);
     }
 }
 
@@ -258,5 +227,4 @@ figure {
         display: flex;
     }
 }
-
 </style>

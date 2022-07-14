@@ -20,6 +20,8 @@ export default {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair+Display&display=swap');
+
+/** Global css */
 body, html {
   margin: 0;
   padding: 0;
@@ -31,6 +33,74 @@ body, html {
   line-height: 1.8;
   color: #5f5c68;
 }
+
+section {
+  position: relative;
+  overflow: hidden;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/** Bg - Light */
+section.bg-vanilla {
+  background-color: #f0f0f5;
+  
+  .container::before {
+    content: '';
+    position: absolute;
+    background-image: url("https://jannataresort.com/_nuxt/img/a109df5.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    top: -10vh;
+    left: -25px;
+    height: 100%;
+    width: 250px;
+  }
+}
+
+/** Bg - Dark */
+section.bg-dark-blue {
+  background-color: #5f5c68;
+
+  .container::before {
+    content: '';
+    position: absolute;
+    background-image: url("https://jannataresort.com/_nuxt/img/a989adf.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    top: -1%;
+    left: 20%;
+    height: 100%;
+    width: 300px;
+  }
+
+  .container::after {
+    content: "";
+    position: absolute;
+    background-image: url("https://jannataresort.com/_nuxt/img/33d233c.png");
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: .4;
+    bottom: -20%;
+    right: 25%;
+    height: 500px;
+    width: 300px;
+  }
+}
+
+.container {
+  width: 100;
+  max-width: 1280px;
+  padding: 0 5rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding-left: 12rem;
+  padding-right: 12rem;
+}
+
 a.inline-link {
   padding: 20px;
   margin-left: -20px;
@@ -72,7 +142,14 @@ a.inline-link {
   -webkit-transform-origin: right;
 }
 
+.block-entry .inner p {
+  max-width: 300px;
+  margin: 0;
+  font-size: 12px;
+}
+
 .text-green {
   color: #679334 !important;
 }
+
 </style>
